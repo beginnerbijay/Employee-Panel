@@ -1,0 +1,13 @@
+.container{
+    overflow: auto;
+}
+.table{
+    margin: auto;
+    margin-top: 100px;
+}
+form{
+    margin: auto;
+    margin-top: 80px;
+    width: 400px;
+}
+
