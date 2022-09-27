@@ -11,6 +11,18 @@ const userSchema = mongoose.Schema({
         required:true,
         minLength:3
     },
+    sex:{
+        type:String,
+        required:true
+    },
+    age:{
+        type:Number,
+        required:true
+    },
+    salary:{
+        type:Number,
+        required:true
+    },
     phone:{
         type:Number,
         required:true,

@@ -32,6 +32,9 @@ const User = () => {
   <div className="card-body">
     <h2 className="card-title"><span>Name:</span>{user.fname} {user.lname}</h2>
     <h5 className="card-title mb-2"><span>Job Profile:</span>{user.job}</h5>
+    <h5 className="card-title mb-2"><span>Gender:</span>{user.sex}</h5>
+    <h5 className="card-title mb-2"><span>Age:</span>{user.age}</h5>
+    <h5 className="card-title mb-2"><span>Salary:</span>{user.salary}</h5>
     <h5 className="card-title mb-2"><span><i className="bi bi-envelope"></i>:</span>{user.phone}</h5>
     <h5 className="card-title mb-2"><span><i className="bi bi-telephone-fill"></i>:</span>{user.email}</h5>
     <h5 className="card-text"><span><i className="bi bi-house-door-fill"></i>:</span>{user.add}</h5>

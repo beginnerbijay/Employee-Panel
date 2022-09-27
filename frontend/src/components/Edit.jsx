@@ -7,6 +7,9 @@ const Edit = () => {
   const [state,setState] = useState({
     fname:"",
     lname:"",
+    sex:"",
+    age:"",
+    salary:"",
     phone:"",
     email:"",
     job:"",
@@ -43,7 +46,7 @@ const Edit = () => {
   
 const onchange = async(e) =>{
   e.preventDefault();
-  const {fname,lname,phone,email,job,add} = state;
+  const {fname,lname,sex,age,salary,phone,email,job,add} = state;
   try{
   const res = await fetch(`http://localhost:8000/edit/${id}`,{
     method:'PATCH',
@@ -51,7 +54,7 @@ const onchange = async(e) =>{
       'Content-Type':'application/json'
     },
     body:JSON.stringify({
-      fname,lname,phone,email,job,add
+      fname,lname,sex,age,salary,phone,email,job,add
     })
   });
   const responce = await res.json();
@@ -77,6 +80,24 @@ const onchange = async(e) =>{
   <div className="form-group">
     <label >Last Name</label>
     <input type="text" className="form-control"  placeholder="Enter Last Name" onChange={setvalue} value={state.lname} name="lname"/>
+  </div>
+  <div className="form-group" style={{marginTop:5}}>
+      <label>
+        Sex
+        <select value={state.sex} onChange={setvalue} name="sex" style={{marginLeft:10}}>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+    </div>
+    <div className="form-group">
+    <label >Age</label>
+    <input type="number" className="form-control"  placeholder="Enter Age" onChange={setvalue} value={state.age} name="age"/>
+  </div>
+    <div className="form-group">
+    <label >Salary</label>
+    <input type="number" className="form-control"  placeholder="Enter Salary" onChange={setvalue} value={state.salary} name="salary"/>
   </div>
   <div className="form-group">
     <label >Phone Number</label>

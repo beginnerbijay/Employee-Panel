@@ -54,8 +54,9 @@ const Home = () => {
       <th scope="col">First</th>
       <th scope="col">Last</th>
       <th scope="col">phone</th>
-      <th scope="col">email</th>
+      <th scope="col" style={{width:240}}>email</th>
       <th scope="col">job profile</th>
+      <th scope="col">address</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -70,7 +71,7 @@ const Home = () => {
       <td>{ele.email}</td>
       <td>{ele.job}</td>
       <td>{ele.add}</td>
-      <td style={{width:200}}>
+      <td className='style' style={{width:200}}>
       <NavLink to={`user/${ele._id}`}><button style={{paddingBlock:2}} className='btn btn-success'><i className="bi bi-eye-fill"></i></button></NavLink>
       <NavLink to={`edit/${ele._id}`}><button style={{paddingBlock:2,marginLeft:8}} className='btn btn-primary'><i className="bi bi-pencil-square"></i></button></NavLink>
       <button style={{paddingBlock:2,marginLeft:8}} className='btn btn-danger' onClick={()=>deleteuser(ele._id)}><i className="bi bi-trash3-fill"></i></button>
