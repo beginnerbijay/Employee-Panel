@@ -2,7 +2,17 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const Client = require('../model/model')
-
+const multer = require('multer')
+const storage = multer.diskStorage({
+    destination: function(req,file,cb){
+        cb(null,'images')
+    },
+    filename:function(req,file,cb){
+        cb(null,Date.now()+'_'+file.originalname)
+    }                        
+});
+ 
+let upload = multer({storage:storage})
  
 router.get('/',async(req,res)=>{
     try{
@@ -29,10 +39,12 @@ router.get('/user/:id',async(req,res)=>{
     
 });
 
-router.patch('/edit/:id',async(req,res)=>{
+router.patch('/edit/:id',upload.single('image'),async(req,res)=>{
     try{
         const _id = req.params.id;
-        const data = await Client.findByIdAndUpdate(_id,req.body,{
+        const image = req.file?req.file.filename:null;
+        const {fname,lname,sex,age,salary,phone,email,job,add}= req.body;
+        const data = await Client.findByIdAndUpdate(_id,{fname,lname,sex,age,salary,phone,email,job,add,image},{
             new:true
         });
         if(data){
@@ -61,11 +73,11 @@ router.delete('/delete/:id',async(req,res)=>{
     
 });
 
-router.post('/adduser',async(req,res)=>{
+router.post('/adduser',upload.single('image'),async(req,res)=>{
 try{
-    console.log(req.body)
-    const user = new Client(req.body);
-    console.log(user)
+    const image = req.file?req.file.filename:null;
+    const {fname,lname,sex,age,salary,phone,email,job,add}= req.body;
+    const user = new Client({fname,lname,sex,age,salary,phone,email,job,add,image});
     const data = await user.save();
     if(data){
         res.status(200).json("registration success")
